@@ -45,4 +45,16 @@ public class Exe {
         String result = String.valueOf(c,0,j);
         return result;
     }
+
+    //判断是否为回文
+    public boolean isPlalindrome(String str){
+        if(str == null)
+            return false;
+        int len = str.length();
+        //比较左右两个偏移相同的字符是否一致
+        for(int i = 0; i < len/2;i++)
+            if(str.charAt(i) != str.charAt(len-1-i))
+                return false;
+        return true;
+    }
 }
