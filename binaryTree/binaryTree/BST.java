@@ -76,8 +76,6 @@ public class BST {
         System.out.println(node.data);
     }
 
-
-
     //返回二叉树的节点数量
     private int size(Node head){
         if(head == null) return 0;

@@ -1,10 +1,15 @@
-package com.StringProblems;
+package com.stringProblems;
+
+import java.util.List;
 
 /**
  * Created by Alvin on 15/11/16.
  */
 public class Exe {
-    //变形数
+
+    /**
+     * 变形数
+     */
     public boolean isChange(String str1,String str2){
         //若有一个字符串为null或者两个字符串的长度不相等,那么必不为变形
         if(str1 == null || str1 == null || str1.length() != str2.length())
@@ -23,7 +28,9 @@ public class Exe {
         return true;
     }
 
-    //移除字符串中的数字
+    /**
+     * 移除字符串中的数字
+     */
     public String deleteNumFromString(String str){
         if(str == null)
             return null;
@@ -46,7 +53,9 @@ public class Exe {
         return result;
     }
 
-    //判断是否为回文
+    /**
+     * 判断是否为回文
+     */
     public boolean isPlalindrome(String str){
         if(str == null)
             return false;
@@ -56,5 +65,65 @@ public class Exe {
             if(str.charAt(i) != str.charAt(len-1-i))
                 return false;
         return true;
+    }
+
+    /**
+     * 递归法反转单向链表
+     */
+    public Node reverseListByRec(Node head) {
+        //若链表为空或只有一个节点,则直接返回
+        if(null == head || null == head.next)
+            return head;
+        //遍历链表,直到链表末尾,然后从后向前赋值
+        reverseListByRec(head.next).next = head;
+        //此时的头节点为尾节点,所以next节点应该为null
+        head.next = null;
+        return head;
+    }
+
+    /**
+     * 遍历法反转单向链表
+     */
+    public void reverseList(Node head) {
+        if(null == head || null == head.next)
+            return ;
+        //上一个节点
+        Node pre = head;
+        //当前节点
+        Node cur = head.next;
+        Node temp;
+        while(null != cur) {
+            //将当前节点的下一个节点保存起来
+            temp = cur.next;
+            //将当前节点的下一个节点指向前一个节点
+            cur.next = pre;
+            //将当前前一个节点设置为当前节点
+            pre = cur;
+            //将当前节点设置为下一个节点
+            cur = temp;
+        }
+        //此时的头节点为尾节点,所以next节点应该为null
+        head.next = null;
+    }
+
+    /**
+     * 反转双向链表
+     */
+    public void reverseDuList(Node head) {
+        if(null == head || null == head.next)
+            return ;
+        //当前节点
+        Node cur = head;
+        //前置节点
+        Node pre;
+        while(null != cur) {
+            //保存后置节点
+            Node temp = cur.next;
+            //反转当前节点
+            cur.next = cur.pre;
+            cur.pre = temp;
+            //向后传递
+            cur = temp;
+        }
     }
 }
